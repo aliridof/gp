@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAB Indonesia Maju by Green Party</title>
+
+  <style>
+    :root{
+      /* Palette utama */
+      --primary: #589F44;
+      --white: #FFFFFF;
+
+      /* Netral pendukung (untuk keterbacaan & border) */
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+
+      /* Turunan primary (manual, tetap konsisten) */
+      --primary-700: #467f36;
+      --primary-50: #f2f8ef;
+      --primary-100: #e6f2e1;
+
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 10px;
+
+      --focus: 0 0 0 3px rgba(88, 159, 68, 0.22);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(88,159,68,0.18), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(88,159,68,0.10), transparent 55%),
+        var(--bg);
+      min-height: 100vh;
+      padding: 24px;
+      line-height: 1.4;
+    }
+
+    .container{
+      max-width: 1400px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header{
+      background: linear-gradient(135deg, var(--primary), var(--primary-700));
+      color: var(--white);
+      padding: 22px 24px;
+    }
+    .header .title-row{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 280px;
+    }
+    .logo{
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.28);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      user-select: none;
+    }
+    .header h1{
+      font-size: 18px;
+      letter-spacing: 0.2px;
+    }
+    .header p{
+      margin-top: 4px;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .header .meta{
+      text-align: right;
+      opacity: 0.95;
+      font-size: 12px;
+    }
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      white-space: nowrap;
+    }
+
+    /* Controls */
+    .controls{
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .controls .left,
+    .controls .right{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn{
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, box-shadow 120ms ease, color 120ms ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      user-select: none;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .btn:active{ transform: translateY(1px); }
+    .btn:focus{ outline: none; box-shadow: var(--focus); }
+
+    .btn-primary{
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 8px 18px rgba(88,159,68,0.22);
+    }
+    .btn-primary:hover{
+      background: var(--primary-700);
+      box-shadow: 0 10px 22px rgba(88,159,68,0.28);
+    }
+
+    .btn-outline{
+      background: var(--white);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-outline:hover{
+      border-color: rgba(88,159,68,0.45);
+      background: var(--primary-50);
+    }
+
+    .btn-ghost{
+      background: transparent;
+      color: var(--text);
+      border-color: transparent;
+    }
+    .btn-ghost:hover{
+      background: var(--primary-50);
+      border-color: var(--primary-100);
+    }
+
+    .btn-sm{
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .btn-danger{
+      background: #dc2626;
+      color: var(--white);
+      box-shadow: 0 8px 18px rgba(220,38,38,0.22);
+    }
+    .btn-danger:hover{
+      background: #b91c1c;
+      box-shadow: 0 10px 22px rgba(220,38,38,0.28);
+    }
+
+    /* Table */
+    .table-wrapper{
+      padding: 16px;
+      overflow-x: auto;
+      background: var(--white);
+    }
+    table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+      min-width: 980px;
+    }
+    thead th{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: var(--primary);
+      color: var(--white);
+      text-align: left;
+      padding: 12px 10px;
+      font-weight: 800;
+      border-bottom: 1px solid rgba(255,255,255,0.22);
+    }
+    thead th:first-child{ border-top-left-radius: 12px; }
+    thead th:last-child{ border-top-right-radius: 12px; }
+
+    tbody td{
+      padding: 10px 10px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      background: var(--white);
+    }
+
+    /* Zebra halus */
+    tbody tr:nth-child(even) td{
+      background: #fbfcfe;
+    }
+
+    tbody tr:hover td{
+      background: var(--primary-50);
+    }
+
+    .number{ text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* Kegiatan: rapikan teks panjang */
+    td.kegiatan{
+      max-width: 520px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Category row */
+    .category-row td{
+      background: var(--primary-100) !important;
+      border-bottom: 1px solid rgba(88,159,68,0.25);
+      padding: 12px 12px;
+    }
+    .category-bar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .category-title{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: var(--text);
+    }
+    .category-actions{
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Total rows */
+    .total-row td{
+      background: #f6f7fb !important;
+      font-weight: 800;
+      border-top: 1px solid var(--border);
+    }
+    .grand-total-row td{
+      background: var(--primary-50) !important;
+      font-weight: 900;
+      font-size: 14px;
+      border-top: 2px solid rgba(88,159,68,0.55);
+    }
+
+    .action-btns{
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    /* Summary */
+    .summary{
+      padding: 18px 16px 22px;
+      background: linear-gradient(0deg, var(--primary-50), var(--white));
+      border-top: 1px solid var(--border);
+    }
+    .summary h2{
+      font-size: 16px;
+      margin-bottom: 12px;
+      letter-spacing: 0.2px;
+    }
+    .summary-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .summary-item{
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-left: 6px solid var(--primary);
+      border-radius: var(--radius-md);
+      padding: 14px 14px;
+      box-shadow: 0 6px 16px rgba(15,23,42,0.06);
+    }
+    .summary-item label{
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .summary-item .value{
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Modal */
+    .modal{
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal.active{ display: flex; }
+
+    .modal-content{
+      width: min(680px, 100%);
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+    .modal-head{
+      padding: 16px 16px;
+      background: var(--primary-50);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .modal-head h3{
+      font-size: 15px;
+      font-weight: 900;
+    }
+    .modal-body{
+      padding: 16px;
+      max-height: 72vh;
+      overflow: auto;
+    }
+
+    .form-grid{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .form-group{ display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full{ grid-column: 1 / -1; }
+
+    .form-group label{
+      font-weight: 800;
+      font-size: 12px;
+      color: #334155;
+    }
+    input[type="text"], input[type="number"], select{
+      width: 100%;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: 13px;
+      color: var(--text);
+      transition: box-shadow 120ms ease, border-color 120ms ease;
+    }
+    input:focus, select:focus{
+      outline: none;
+      border-color: rgba(88,159,68,0.6);
+      box-shadow: var(--focus);
+    }
+
+    .modal-actions{
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--white);
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    /* Responsif */
+    @media (max-width: 860px){
+      body{ padding: 14px; }
+      .header{ padding: 18px 16px; }
+      .table-wrapper{ padding: 12px; }
+      .form-grid{ grid-template-columns: 1fr; }
+      td.kegiatan{ max-width: 360px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .btn{ transition: none; }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        max-width: 100% !important;
+      }
+      
+      .controls, .action-btns, .category-actions, .header .meta {
+        display: none !important;
+      }
+      
+      .header {
+        background: #589F44 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      .table-wrapper {
+        overflow: visible !important;
+        padding: 10px !important;
+      }
+      
+      table {
+        min-width: auto !important;
+        font-size: 10px !important;
+      }
+      
+      thead th {
+        background: #589F44 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        padding: 8px 6px !important;
+        font-size: 10px !important;
+      }
+      
+      tbody td {
+        padding: 6px !important;
+        font-size: 10px !important;
+      }
+      
+      td.kegiatan {
+        max-width: none !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: clip !important;
+      }
+      
+      .category-row td {
+        background: #e6f2e1 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      .category-bar {
+        justify-content: flex-start !important;
+      }
+      
+      .total-row td, .grand-total-row td {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      
+      .summary {
+        page-break-inside: avoid;
+      }
+      
+      .summary-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+      }
+      
+      .summary-item {
+        padding: 8px !important;
+        box-shadow: none !important;
+      }
+      
+      .summary-item .value {
+        font-size: 12px !important;
+      }
+      
+      .modal {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title-row">
+        <div class="brand">
+          <div class="logo">GP</div>
+          <div>
+            <h1>RAB INDONESIA MAJU</h1>
+            <p>Rencana Anggaran Biaya — Interactive Spreadsheet</p>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="pill">Tema: <strong>#589F44</strong> + <strong>#FFFFFF</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="left">
+        <button type="button" class="btn btn-primary" onclick="addRow()">➕ Tambah Baris</button>
+        <button type="button" class="btn btn-outline" onclick="addCategory()">📁 Tambah Kategori</button>
+      </div>
+      <div class="right">
+        <button type="button" class="btn btn-danger" onclick="printPDF()">🖨️ Print PDF</button>
+        <button type="button" class="btn btn-ghost" onclick="exportData()">💾 Export JSON</button>
+        <button type="button" class="btn btn-ghost" onclick="importData()">📂 Import JSON</button>
+      </div>
+    </div>
+
+    <div class="table-wrapper" aria-label="Tabel RAB">
+      <table id="mainTable">
+        <thead>
+          <tr>
+            <th style="width: 60px;">No</th>
+            <th style="width: 360px;">Kegiatan</th>
+            <th style="width: 110px;">Satuan</th>
+            <th style="width: 140px;">Nilai</th>
+            <th style="width: 110px;">Jumlah</th>
+            <th style="width: 160px;">Total</th>
+            <th style="width: 220px;">Keterangan</th>
+            <th style="width: 180px;">PIC</th>
+            <th style="width: 170px; text-align:right;">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="summary">
+      <h2>Rekapitulasi RAB</h2>
+      <div class="summary-grid" id="summaryGrid"></div>
+    </div>
+  </div>
+
+  <!-- Modal Edit -->
+  <div id="editModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="editTitle">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h3 id="editTitle">Edit Data</h3>
+        <button type="button" class="btn btn-sm btn-ghost" onclick="closeModal()" aria-label="Tutup">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="editNo">No</label>
+            <input type="text" id="editNo" />
+          </div>
+
+          <div class="form-group">
+            <label for="editSatuan">Satuan</label>
+            <input type="text" id="editSatuan" />
+          </div>
+
+          <div class="form-group full">
+            <label for="editKegiatan">Kegiatan</label>
+            <input type="text" id="editKegiatan" />
+          </div>
+
+          <div class="form-group">
+            <label for="editNilai">Nilai</label>
+            <input type="number" id="editNilai" inputmode="numeric" />
+          </div>
+
+          <div class="form-group">
+            <label for="editJumlah">Jumlah</label>
+            <input type="number" id="editJumlah" inputmode="numeric" />
+          </div>
+
+          <div class="form-group full">
+            <label for="editKeterangan">Keterangan</label>
+            <input type="text" id="editKeterangan" />
+          </div>
+
+          <div class="form-group full">
+            <label for="editPIC">PIC</label>
+            <input type="text" id="editPIC" />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" onclick="closeModal()">Batal</button>
+        <button type="button" class="btn btn-primary" onclick="saveEdit()">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let data = {
+      categories: [
+        {
+          id: 'A',
+          name: 'Identifikasi',
+          items: [
+            {no: 1, kegiatan: 'Identifikasi Ketua Wilayah Dan Ketua Cabang Yang Gagal Pileg', satuan: 'Ls', nilai: 2500000000, jumlah: 1, keterangan: '', pic: 'TIM Kesekretariatan MJ, Arif N, Kamal'},
+            {no: 2, kegiatan: 'Identifikasi Ketua Wilayah Atau Ketua Cabang Terafiliasi Pendamping Desa', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: ''},
+            {no: 3, kegiatan: 'Identifikasi Pengurus DPP PKB Pro Indonesia Maju', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: ''},
+            {no: 4, kegiatan: 'Identifikasi Kyai-kyai Dan Pondok Pesantren Pendukung', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: ''},
+            {no: 5, kegiatan: 'Identifikasi Ketua Cabang Dan Wilayah Pro Indonesia Maju', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'B',
+          name: 'Pembentukan Tim & Aktivasi Posko',
+          items: [
+            {no: 6, kegiatan: 'Membentuk Tim Internal Indonesia Maju (Tim Pusat)', satuan: 'Ls', nilai: 200000000, jumlah: 1, keterangan: '', pic: 'LE'},
+            {no: 7, kegiatan: 'Membentuk Tim Narasi Dan Pembangunan Opini', satuan: 'Ls', nilai: 500000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 8, kegiatan: 'Operasional Pembentukan Tim Forum DPW', satuan: 'Ls', nilai: 150000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 9, kegiatan: 'Membentuk Tim Hukum & Legal', satuan: 'Ls', nilai: 1000000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 10, kegiatan: 'Aktivasi Posko Dukuh', satuan: 'Ls', nilai: 2000000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 11, kegiatan: 'Aktivasi Posko Khusus', satuan: 'Ls', nilai: 350000000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'C',
+          name: 'Konsolidasi tertutup',
+          items: [
+            {no: 12, kegiatan: 'Konsolidasi Tertutup Wilayah Tahap I di Jakarta (38 DPW)', satuan: 'Ls', nilai: 200000000, jumlah: 1, keterangan: '', pic: 'AKK, LE, MJ, HFZ, SI, MT'},
+            {no: 13, kegiatan: 'Konsolidasi Tertutup Wilayah Tahap II di Jakarta (38 DPW)', satuan: 'Ls', nilai: 300000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 14, kegiatan: 'Konsolidasi Tertutup Cabang', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'a. Aceh & Sumut (56 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'b. Sumbar, Riau, Kepri (35 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'c. Sumsel, Bengkulu, Jambi, Babel (45 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'd. Lampung (15 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'e. DKI, Banten (14)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'f. Jabar (27 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'g. Jateng (35 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'h. DIY (5 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'i. Jatim (38 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'j. Kalbar, Kalsel, Kalteng (41 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'k. Kaltim, Kaltara (15 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'l. Sulsel, Sulteng, Sulbar, Sultra (60 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'm. Sulut, Gorontalo, Malut, Maluku (42 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'n. Papua, Papua Selatan, Papua Pegunungan (41 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'o. Papua Barat, Papua Tengah, Papua Barat Daya (27 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'p. Bali, NTB (19 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'q. NTT (22 Cabang)', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 15, kegiatan: 'Akomodasi Konsolidasi Cabang', satuan: 'Ls', nilai: 10000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 16, kegiatan: 'Biaya Koordinasi (Panitia Wilayah)', satuan: 'Ls', nilai: 250000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 17, kegiatan: 'Transportasi dan Akomodasi Tim Pusat', satuan: 'Ls', nilai: 400000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 18, kegiatan: 'Cipta Kondisi DPP PKB', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 19, kegiatan: 'Konsolidasi Tertutup Internal Pengurus DPP Pro Indonesia Maju (61 Org)', satuan: 'Ls', nilai: 150000000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'D',
+          name: 'Komunikasi',
+          items: [
+            {no: 20, kegiatan: 'Membangun Komunikasi Dengan PBNU, PWNU, PCNU, Ponpes & Kyai-kyai sepuh', satuan: 'Ls', nilai: 7500000000, jumlah: 1, keterangan: '', pic: 'HFZ, MJ, SI'},
+            {no: 21, kegiatan: 'Membangun Komunikasi Dengan Elit Politik Eksternal', satuan: 'Ls', nilai: 1500000000, jumlah: 1, keterangan: '', pic: 'AKK'},
+            {no: 22, kegiatan: 'Diskusi publik masa depan PKB untuk Indonesia Maju (menggunakan instrumen luar)', satuan: 'Ls', nilai: 120000000, jumlah: 1, keterangan: '', pic: 'LE'}
+          ]
+        },
+        {
+          id: 'E',
+          name: 'Narasi dan Konten',
+          items: [
+            {no: 23, kegiatan: 'Produksi konten di media mainstream dan media sosial', satuan: 'Ls', nilai: 75000000, jumlah: 1, keterangan: '', pic: 'Jae, Moksa, Simon, Mukhlas'},
+            {no: 24, kegiatan: 'Membuat Pressure Group (menggunakan instrumen luar)', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'a. Jakarta', satuan: 'Ls', nilai: 150000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'b. Surabaya', satuan: 'Ls', nilai: 100000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'c. Medan', satuan: 'Ls', nilai: 100000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'd. DIY', satuan: 'Ls', nilai: 100000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'e. Banten', satuan: 'Ls', nilai: 100000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'f. Makassar', satuan: 'Ls', nilai: 100000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: '', kegiatan: 'g. Banjarmasin', satuan: 'Ls', nilai: 100000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 25, kegiatan: 'Jubir, Nara Sumber, Influencer (Kyai, Tokoh, Pengamat)', satuan: 'Ls', nilai: 1000000000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'F',
+          name: 'Pra Muktamar',
+          items: [
+            {no: 26, kegiatan: 'Pertemuan Forum DPW (38 DPW)', satuan: 'Ls', nilai: 1000000000, jumlah: 1, keterangan: '', pic: 'Ali Anshori, Arif N, Husni M'},
+            {no: 27, kegiatan: 'Pertemuan Koordinasi & Konsolidasi Cabang-cabang sebelum berangkat', satuan: 'Ls', nilai: 60000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 28, kegiatan: 'Konsolidasi Kyai-kyai Khos', satuan: 'Ls', nilai: 75000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 29, kegiatan: 'Konsolidasi Dewan Syuro', satuan: 'Ls', nilai: 50000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 30, kegiatan: 'Akomodasi', satuan: 'Ls', nilai: 10000000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'G',
+          name: 'Mobilisasi',
+          items: [
+            {no: 31, kegiatan: 'Pemberangkatan Cabang-cabang ke lokasi Muktamar', satuan: 'Ls', nilai: 75000000, jumlah: 1, keterangan: '', pic: 'Ali Anshori, Arif N'},
+            {no: 32, kegiatan: 'Transportasi (pp utk 5 org peserta)', satuan: 'Ls', nilai: 75000000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'H',
+          name: 'Karantina',
+          items: [
+            {no: 33, kegiatan: 'Karantina Cabang', satuan: 'Ls', nilai: 75000000, jumlah: 1, keterangan: '', pic: 'Ali Anshori, Arif N'},
+            {no: 34, kegiatan: 'Akomodasi', satuan: 'Ls', nilai: 12000000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        },
+        {
+          id: 'I',
+          name: 'Muktamar',
+          items: [
+            {no: 35, kegiatan: 'Honorarium Tim', satuan: 'Ls', nilai: 4400000, jumlah: 1, keterangan: '', pic: 'Miftakhul Aziz'},
+            {no: 36, kegiatan: 'Konsumsi Tim', satuan: 'Ls', nilai: 800000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 37, kegiatan: 'Akomodasi', satuan: 'Ls', nilai: 7500000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 38, kegiatan: 'Transportasi (sewa mobil)', satuan: 'Ls', nilai: 7500000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 39, kegiatan: 'Perlengkapan', satuan: 'Ls', nilai: 2200000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 40, kegiatan: 'Media', satuan: 'Ls', nilai: 1750000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 41, kegiatan: 'Meeting Room (Full Board)', satuan: 'Ls', nilai: 2500000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 42, kegiatan: 'Meeting Room Pleno (Full Board)', satuan: 'Ls', nilai: 2000000, jumlah: 1, keterangan: '', pic: ''},
+            {no: 43, kegiatan: 'Meeting Room utk Sekretariat (Full Board)', satuan: 'Ls', nilai: 1500000, jumlah: 1, keterangan: '', pic: ''}
+          ]
+        }
+      ]
+    };
+
+    let currentEditIndex = { catIndex: null, itemIndex: null };
+
+    function escapeHTML(value) {
+      const str = String(value ?? "");
+      return str
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatCurrency(num) {
+      const n = Number(num);
+      return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+      }).format(Number.isFinite(n) ? n : 0);
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      if (!data.categories?.length) {
+        const row = tbody.insertRow();
+        row.innerHTML = `<td colspan="9" style="padding:16px; color:#64748b;">
+          Belum ada kategori. Klik <strong>Tambah Kategori</strong> untuk mulai.
+        </td>`;
+        renderSummary();
+        return;
+      }
+
+      data.categories.forEach((cat, catIndex) => {
+        const catRow = tbody.insertRow();
+        catRow.className = 'category-row';
+        catRow.innerHTML = `
+          <td colspan="9">
+            <div class="category-bar">
+              <div class="category-title">
+                <span>📁</span>
+                <span>${escapeHTML(cat.id)}. ${escapeHTML(cat.name)}</span>
+              </div>
+              <div class="category-actions">
+                <button type="button" class="btn btn-sm btn-primary" onclick="addRowToCategory(${catIndex})">➕ Tambah Baris</button>
+                <button type="button" class="btn btn-sm btn-outline" onclick="deleteCategory(${catIndex})">🗑️ Hapus Kategori</button>
+              </div>
+            </div>
+          </td>
+        `;
+
+        cat.items.forEach((item, itemIndex) => {
+          const row = tbody.insertRow();
+          const total = (Number(item.nilai) || 0) * (Number(item.jumlah) || 0);
+
+          const kegiatanText = escapeHTML(item.kegiatan);
+          row.innerHTML = `
+            <td>${escapeHTML(item.no)}</td>
+            <td class="kegiatan" title="${kegiatanText}">${kegiatanText}</td>
+            <td>${escapeHTML(item.satuan)}</td>
+            <td class="number">${formatCurrency(item.nilai)}</td>
+            <td class="number">${escapeHTML(item.jumlah)}</td>
+            <td class="number">${formatCurrency(total)}</td>
+            <td>${escapeHTML(item.keterangan)}</td>
+            <td>${escapeHTML(item.pic)}</td>
+            <td class="action-btns">
+              <button type="button" class="btn btn-sm btn-outline" onclick="editRow(${catIndex}, ${itemIndex})">✏️ Edit</button>
+              <button type="button" class="btn btn-sm btn-ghost" onclick="deleteRow(${catIndex}, ${itemIndex})" aria-label="Hapus">🗑️</button>
+            </td>
+          `;
+        });
+
+        const totalRow = tbody.insertRow();
+        totalRow.className = 'total-row';
+        const categoryTotal = cat.items.reduce((sum, it) => sum + ((Number(it.nilai) || 0) * (Number(it.jumlah) || 0)), 0);
+        totalRow.innerHTML = `
+          <td colspan="5"><strong>Total ${escapeHTML(cat.name)}</strong></td>
+          <td class="number"><strong>${formatCurrency(categoryTotal)}</strong></td>
+          <td colspan="3"></td>
+        `;
+      });
+
+      const grandTotal = data.categories.reduce((sum, cat) => {
+        return sum + cat.items.reduce((catSum, item) => catSum + ((Number(item.nilai) || 0) * (Number(item.jumlah) || 0)), 0);
+      }, 0);
+
+      const overhead = grandTotal * 0.15;
+      const finalTotal = grandTotal + overhead;
+
+      const overheadRow = tbody.insertRow();
+      overheadRow.className = 'total-row';
+      overheadRow.innerHTML = `
+        <td colspan="5"><strong>J. Overhead (15%)</strong></td>
+        <td class="number"><strong>${formatCurrency(overhead)}</strong></td>
+        <td colspan="3"></td>
+      `;
+
+      const grandTotalRow = tbody.insertRow();
+      grandTotalRow.className = 'grand-total-row';
+      grandTotalRow.innerHTML = `
+        <td colspan="5"><strong>TOTAL</strong></td>
+        <td class="number"><strong>${formatCurrency(finalTotal)}</strong></td>
+        <td colspan="3"></td>
+      `;
+
+      renderSummary();
+    }
+
+    function renderSummary() {
+      const summaryGrid = document.getElementById('summaryGrid');
+      summaryGrid.innerHTML = '';
+
+      if (!data.categories?.length) return;
+
+      data.categories.forEach(cat => {
+        const total = cat.items.reduce((sum, item) => sum + ((Number(item.nilai) || 0) * (Number(item.jumlah) || 0)), 0);
+        const div = document.createElement('div');
+        div.className = 'summary-item';
+        div.innerHTML = `
+          <label>${escapeHTML(cat.id)}. ${escapeHTML(cat.name)}</label>
+          <div class="value">${formatCurrency(total)}</div>
+        `;
+        summaryGrid.appendChild(div);
+      });
+
+      const grandTotal = data.categories.reduce((sum, cat) => {
+        return sum + cat.items.reduce((catSum, item) => catSum + ((Number(item.nilai) || 0) * (Number(item.jumlah) || 0)), 0);
+      }, 0);
+
+      const overhead = grandTotal * 0.15;
+      const finalTotal = grandTotal + overhead;
+
+      const overheadDiv = document.createElement('div');
+      overheadDiv.className = 'summary-item';
+      overheadDiv.style.borderLeftColor = getComputedStyle(document.documentElement).getPropertyValue('--primary');
+      overheadDiv.innerHTML = `
+        <label>J. Overhead (15%)</label>
+        <div class="value">${formatCurrency(overhead)}</div>
+      `;
+      summaryGrid.appendChild(overheadDiv);
+
+      const totalDiv = document.createElement('div');
+      totalDiv.className = 'summary-item';
+      totalDiv.style.borderLeftColor = getComputedStyle(document.documentElement).getPropertyValue('--primary');
+      totalDiv.innerHTML = `
+        <label>TOTAL</label>
+        <div class="value">${formatCurrency(finalTotal)}</div>
+      `;
+      summaryGrid.appendChild(totalDiv);
+    }
+
+    function addRow() {
+      if (!data.categories.length) {
+        alert('Tambahkan kategori terlebih dahulu!');
+        return;
+      }
+      const catIndex = data.categories.length - 1;
+      addRowToCategory(catIndex);
+    }
+
+    function addRowToCategory(catIndex) {
+      const newItem = { no: '', kegiatan: 'Item Baru', satuan: '', nilai: 0, jumlah: 0, keterangan: '', pic: '' };
+      data.categories[catIndex].items.push(newItem);
+      renderTable();
+    }
+
+    function addCategory() {
+      const categoryName = prompt('Nama Kategori:');
+      if (!categoryName) return;
+
+      const categoryId = String.fromCharCode(65 + data.categories.length);
+      data.categories.push({ id: categoryId, name: categoryName, items: [] });
+      renderTable();
+    }
+
+    function deleteCategory(catIndex) {
+      if (confirm('Yakin ingin menghapus kategori ini beserta semua itemnya?')) {
+        data.categories.splice(catIndex, 1);
+        renderTable();
+      }
+    }
+
+    function deleteRow(catIndex, itemIndex) {
+      if (confirm('Yakin ingin menghapus baris ini?')) {
+        data.categories[catIndex].items.splice(itemIndex, 1);
+        renderTable();
+      }
+    }
+
+    function editRow(catIndex, itemIndex) {
+      currentEditIndex = { catIndex, itemIndex };
+      const item = data.categories[catIndex].items[itemIndex];
+
+      document.getElementById('editNo').value = item.no ?? '';
+      document.getElementById('editKegiatan').value = item.kegiatan ?? '';
+      document.getElementById('editSatuan').value = item.satuan ?? '';
+      document.getElementById('editNilai').value = item.nilai ?? 0;
+      document.getElementById('editJumlah').value = item.jumlah ?? 0;
+      document.getElementById('editKeterangan').value = item.keterangan ?? '';
+      document.getElementById('editPIC').value = item.pic ?? '';
+
+      document.getElementById('editModal').classList.add('active');
+      document.getElementById('editKegiatan').focus();
+    }
+
+    function closeModal() {
+      document.getElementById('editModal').classList.remove('active');
+    }
+
+    function saveEdit() {
+      const { catIndex, itemIndex } = currentEditIndex;
+
+      data.categories[catIndex].items[itemIndex] = {
+        no: document.getElementById('editNo').value,
+        kegiatan: document.getElementById('editKegiatan').value,
+        satuan: document.getElementById('editSatuan').value,
+        nilai: parseFloat(document.getElementById('editNilai').value) || 0,
+        jumlah: parseFloat(document.getElementById('editJumlah').value) || 0,
+        keterangan: document.getElementById('editKeterangan').value,
+        pic: document.getElementById('editPIC').value
+      };
+
+      renderTable();
+      closeModal();
+    }
+
+    function exportData() {
+      const dataStr = JSON.stringify(data, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'rab-data.json';
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importData() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = '.json,application/json';
+      input.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          try {
+            const parsed = JSON.parse(event.target.result);
+            // minimal guard
+            if (!parsed || !Array.isArray(parsed.categories)) throw new Error("Format tidak sesuai");
+            data = parsed;
+            renderTable();
+            alert('Data berhasil diimport!');
+          } catch (error) {
+            alert('Error: File JSON tidak valid atau strukturnya tidak sesuai!');
+          }
+        };
+        reader.readAsText(file);
+      };
+      input.click();
+    }
+
+    // Print PDF Function
+    function printPDF() {
+      // Create a new window for printing
+      const printWindow = window.open('', '_blank');
+      
+      // Calculate totals
+      const grandTotal = data.categories.reduce((sum, cat) => {
+        return sum + cat.items.reduce((catSum, item) => catSum + ((Number(item.nilai) || 0) * (Number(item.jumlah) || 0)), 0);
+      }, 0);
+      const overhead = grandTotal * 0.15;
+      const finalTotal = grandTotal + overhead;
+
+      // Build the print content
+      let tableRows = '';
+      
+      data.categories.forEach((cat) => {
+        // Category header row
+        tableRows += `
+          <tr class="category-row">
+            <td colspan="8" style="background-color: #e6f2e1; font-weight: bold; padding: 10px;">
+              📁 ${cat.id}. ${cat.name}
+            </td>
+          </tr>
+        `;
+        
+        // Item rows
+        cat.items.forEach((item) => {
+          const total = (Number(item.nilai) || 0) * (Number(item.jumlah) || 0);
+          tableRows += `
+            <tr>
+              <td style="text-align: center;">${item.no}</td>
+              <td>${item.kegiatan}</td>
+              <td style="text-align: center;">${item.satuan}</td>
+              <td style="text-align: right;">${formatCurrency(item.nilai)}</td>
+              <td style="text-align: center;">${item.jumlah}</td>
+              <td style="text-align: right;">${formatCurrency(total)}</td>
+              <td>${item.keterangan}</td>
+              <td>${item.pic}</td>
+            </tr>
+          `;
+        });
+        
+        // Category total row
+        const categoryTotal = cat.items.reduce((sum, it) => sum + ((Number(it.nilai) || 0) * (Number(it.jumlah) || 0)), 0);
+        tableRows += `
+          <tr class="total-row">
+            <td colspan="5" style="background-color: #f6f7fb; font-weight: bold; padding: 10px;">
+              Total ${cat.name}
+            </td>
+            <td style="background-color: #f6f7fb; font-weight: bold; text-align: right; padding: 10px;">
+              ${formatCurrency(categoryTotal)}
+            </td>
+            <td colspan="2" style="background-color: #f6f7fb;"></td>
+          </tr>
+        `;
+      });
+      
+      // Overhead row
+      tableRows += `
+        <tr class="total-row">
+          <td colspan="5" style="background-color: #f6f7fb; font-weight: bold; padding: 10px;">
+            J. Overhead (15%)
+          </td>
+          <td style="background-color: #f6f7fb; font-weight: bold; text-align: right; padding: 10px;">
+            ${formatCurrency(overhead)}
+          </td>
+          <td colspan="2" style="background-color: #f6f7fb;"></td>
+        </tr>
+      `;
+      
+      // Grand total row
+      tableRows += `
+        <tr class="grand-total-row">
+          <td colspan="5" style="background-color: #f2f8ef; font-weight: 900; font-size: 14px; padding: 12px; border-top: 2px solid #589F44;">
+            TOTAL
+          </td>
+          <td style="background-color: #f2f8ef; font-weight: 900; font-size: 14px; text-align: right; padding: 12px; border-top: 2px solid #589F44;">
+            ${formatCurrency(finalTotal)}
+          </td>
+          <td colspan="2" style="background-color: #f2f8ef; border-top: 2px solid #589F44;"></td>
+        </tr>
+      `;
+
+      // Build summary section
+      let summaryItems = '';
+      data.categories.forEach(cat => {
+        const total = cat.items.reduce((sum, item) => sum + ((Number(item.nilai) || 0) * (Number(item.jumlah) || 0)), 0);
+        summaryItems += `
+          <div class="summary-item">
+            <div class="label">${cat.id}. ${cat.name}</div>
+            <div class="value">${formatCurrency(total)}</div>
+          </div>
+        `;
+      });
+      
+      summaryItems += `
+        <div class="summary-item">
+          <div class="label">J. Overhead (15%)</div>
+          <div class="value">${formatCurrency(overhead)}</div>
+        </div>
+        <div class="summary-item highlight">
+          <div class="label">TOTAL</div>
+          <div class="value">${formatCurrency(finalTotal)}</div>
+        </div>
+      `;
+
+      const printContent = `
+        <!DOCTYPE html>
+        <html lang="id">
+        <head>
+          <meta charset="UTF-8">
+          <title>RAB Indonesia Maju - Print</title>
+          <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            
+            body {
+              font-family: Arial, "Helvetica Neue", sans-serif;
+              font-size: 11px;
+              color: #0f172a;
+              padding: 20px;
+              line-height: 1.4;
+            }
+            
+            .header {
+              background: #589F44;
+              color: white;
+              padding: 20px;
+              margin-bottom: 20px;
+              border-radius: 8px;
+              text-align: center;
+            }
+            
+            .header h1 {
+              font-size: 20px;
+              margin-bottom: 5px;
+            }
+            
+            .header p {
+              font-size: 12px;
+              opacity: 0.9;
+            }
+            
+            .print-date {
+              text-align: right;
+              font-size: 10px;
+              color: #64748b;
+              margin-bottom: 15px;
+            }
+            
+            table {
+              width: 100%;
+              border-collapse: collapse;
+              margin-bottom: 25px;
+            }
+            
+            thead th {
+              background: #589F44;
+              color: white;
+              text-align: left;
+              padding: 10px 8px;
+              font-weight: bold;
+              font-size: 11px;
+              border: 1px solid #467f36;
+            }
+            
+            tbody td {
+              padding: 8px;
+              border: 1px solid #e2e8f0;
+              vertical-align: top;
+              font-size: 10px;
+            }
+            
+            tbody tr:nth-child(even) td {
+              background-color: #f8fafc;
+            }
+            
+            .summary-section {
+              margin-top: 30px;
+              page-break-inside: avoid;
+            }
+            
+            .summary-section h2 {
+              font-size: 14px;
+              margin-bottom: 15px;
+              color: #0f172a;
+              border-bottom: 2px solid #589F44;
+              padding-bottom: 8px;
+            }
+            
+            .summary-grid {
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 10px;
+            }
+            
+            .summary-item {
+              background: #f8fafc;
+              border: 1px solid #e2e8f0;
+              border-left: 4px solid #589F44;
+              padding: 10px;
+              border-radius: 4px;
+            }
+            
+            .summary-item .label {
+              font-size: 9px;
+              color: #64748b;
+              text-transform: uppercase;
+              margin-bottom: 4px;
+            }
+            
+            .summary-item .value {
+              font-size: 12px;
+              font-weight: bold;
+              color: #0f172a;
+            }
+            
+            .summary-item.highlight {
+              background: #f2f8ef;
+              border-color: #589F44;
+            }
+            
+            .summary-item.highlight .value {
+              font-size: 14px;
+              color: #467f36;
+            }
+            
+            .footer {
+              margin-top: 40px;
+              text-align: center;
+              font-size: 10px;
+              color: #64748b;
+              border-top: 1px solid #e2e8f0;
+              padding-top: 15px;
+            }
+            
+            @media print {
+              body {
+                padding: 10px;
+              }
+              
+              .header {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
+              
+              thead th {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
+              
+              .category-row td,
+              .total-row td,
+              .grand-total-row td,
+              tbody tr:nth-child(even) td,
+              .summary-item {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+              }
+            }
+            
+            @page {
+              size: A4 landscape;
+              margin: 10mm;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <h1>RAB INDONESIA MAJU</h1>
+            <p>Rencana Anggaran Biaya — Green Party</p>
+          </div>
+          
+          <div class="print-date">
+            Dicetak pada: ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+          </div>
+          
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 40px;">No</th>
+                <th style="width: 280px;">Kegiatan</th>
+                <th style="width: 60px;">Satuan</th>
+                <th style="width: 100px;">Nilai</th>
+                <th style="width: 50px;">Jumlah</th>
+                <th style="width: 110px;">Total</th>
+                <th style="width: 120px;">Keterangan</th>
+                <th style="width: 100px;">PIC</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tableRows}
+            </tbody>
+          </table>
+          
+          <div class="summary-section">
+            <h2>Rekapitulasi RAB</h2>
+            <div class="summary-grid">
+              ${summaryItems}
+            </div>
+          </div>
+          
+          <div class="footer">
+            <p>Dokumen ini digenerate oleh sistem RAB Indonesia Maju by Green Party</p>
+          </div>
+          
+          <script>
+            window.onload = function() {
+              window.print();
+              window.onafterprint = function() {
+                window.close();
+              };
+            };
+          <\/script>
+        </body>
+        </html>
+      `;
+
+      printWindow.document.write(printContent);
+      printWindow.document.close();
+    }
+
+    document.getElementById('editModal').addEventListener('click', (e) => {
+      if (e.target.id === 'editModal') closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    renderTable();
+  </script>
+</body>
+</html>
